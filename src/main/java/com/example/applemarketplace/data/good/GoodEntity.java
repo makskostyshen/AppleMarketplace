@@ -4,7 +4,7 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.time.Instant;
+import java.math.BigDecimal;
 
 @Data
 @Entity
@@ -20,6 +20,6 @@ public class GoodEntity {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "created_on")
-    private Instant createdOn;
+    @Column(name = "price")
+    private BigDecimal price;
 }

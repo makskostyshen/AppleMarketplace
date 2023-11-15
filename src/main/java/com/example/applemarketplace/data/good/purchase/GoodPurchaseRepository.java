@@ -1,4 +1,4 @@
-package com.example.applemarketplace.data.purchase;
+package com.example.applemarketplace.data.good.purchase;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

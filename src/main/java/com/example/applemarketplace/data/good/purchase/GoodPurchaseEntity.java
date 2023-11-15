@@ -1,4 +1,4 @@
-package com.example.applemarketplace.data.purchase;
+package com.example.applemarketplace.data.good.purchase;
 
 import com.example.applemarketplace.data.good.GoodEntity;
 import com.example.applemarketplace.data.order.OrderEntity;

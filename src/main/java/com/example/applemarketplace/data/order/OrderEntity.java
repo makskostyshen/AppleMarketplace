@@ -1,11 +1,12 @@
 package com.example.applemarketplace.data.order;
 
-import com.example.applemarketplace.data.purchase.GoodPurchaseEntity;
+import com.example.applemarketplace.data.good.purchase.GoodPurchaseEntity;
 import com.example.applemarketplace.service.model.OrderStatus;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,4 +31,8 @@ public class OrderEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private OrderStatus status;
+
+
+    @Column(name = "created_on")
+    private Instant createdOn;
 }
