@@ -1,4 +1,4 @@
-package com.example.applemarketplace.port;
+package com.example.applemarketplace.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
