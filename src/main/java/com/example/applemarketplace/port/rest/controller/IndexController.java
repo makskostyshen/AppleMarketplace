@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class IndexController {
 
     @GetMapping
-    public ResponseEntity<Void> getApplicationState() {
+    public ResponseEntity<Void> index() {
         return ResponseEntity.ok().build();
     }
 }

@@ -8,9 +8,12 @@ import com.example.applemarketplace.exception.GoodNotFoundException;
 import com.example.applemarketplace.service.ServiceLayerMapper;
 import com.example.applemarketplace.service.model.Good;
 import com.example.applemarketplace.service.model.GoodStock;
-import com.example.applemarketplace.service.model.UpdateGoodStock;
+import com.example.applemarketplace.service.model.UpdateGoodStockRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -19,7 +22,7 @@ public class GoodServiceImpl implements GoodService {
     private final GoodStockRepository stockRepository;
 
     @Override
-    public Good createGood(Good good) {
+    public Good createGood(final Good good) {
         GoodEntity goodEntity = goodRepository.save(ServiceLayerMapper.I.map(good));
 
         stockRepository.save(
@@ -33,16 +36,23 @@ public class GoodServiceImpl implements GoodService {
     }
 
     @Override
-    public GoodStock updateStock(UpdateGoodStock updateGoodStock) {
+    public GoodStock updateStock(final UpdateGoodStockRequest updateGoodStockRequest) {
         return ServiceLayerMapper.I.map(
-                goodRepository.findById(updateGoodStock.getGoodId())
+                goodRepository.findById(updateGoodStockRequest.getGoodId())
                         .map(good -> {
                             GoodStockEntity stock = stockRepository.findByGood(good);
-                            stock.updateQuantity(updateGoodStock.getQuantityChange());
+                            stock.updateQuantity(updateGoodStockRequest.getQuantityChange());
                             stockRepository.save(stock);
                             return stock;
                         })
                         .orElseThrow(GoodNotFoundException::new)
         );
+    }
+
+    @Override
+    public List<GoodStock> getAllGoodStocks() {
+        return stockRepository.findAll().stream()
+                .map(ServiceLayerMapper.I::map)
+                .collect(Collectors.toList());
     }
 }

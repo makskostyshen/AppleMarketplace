@@ -1,15 +1,13 @@
 package com.example.applemarketplace.port.rest;
 
-import com.example.applemarketplace.port.rest.dto.GoodDto;
-import com.example.applemarketplace.port.rest.dto.GoodStockDto;
-import com.example.applemarketplace.port.rest.dto.UpdateGoodStockRequestDto;
-import com.example.applemarketplace.service.model.Good;
-import com.example.applemarketplace.service.model.GoodStock;
-import com.example.applemarketplace.service.model.UpdateGoodStock;
+import com.example.applemarketplace.port.rest.dto.*;
+import com.example.applemarketplace.service.model.*;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR)
 public interface RestPortMapper {
     RestPortMapper I = Mappers.getMapper(RestPortMapper.class);
 
@@ -17,7 +15,14 @@ public interface RestPortMapper {
 
     GoodDto map(Good good);
 
-    UpdateGoodStock map(UpdateGoodStockRequestDto requestDto);
+    UpdateGoodStockRequest map(UpdateGoodStockRequestDto requestDto);
 
     GoodStockDto map(GoodStock goodStock);
+
+    GoodPurchaseDto map(GoodPurchase goodPurchase);
+
+    @Mapping(target = "clientId", source = "client.id")
+    OrderDto map(Order order);
+
+    PlaceOrderPurchaseRequest map(PlaceOrderPurchaseRequestDto placeOrderPurchaseRequestDto);
 }
