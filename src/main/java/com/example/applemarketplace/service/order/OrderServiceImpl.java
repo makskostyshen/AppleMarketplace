@@ -6,18 +6,23 @@ import com.example.applemarketplace.data.good.purchase.GoodPurchaseEntity;
 import com.example.applemarketplace.data.order.OrderEntity;
 import com.example.applemarketplace.data.order.OrderRepository;
 import com.example.applemarketplace.service.ServiceLayerMapper;
-import com.example.applemarketplace.service.model.*;
+import com.example.applemarketplace.service.model.Order;
+import com.example.applemarketplace.service.model.OrderStatus;
+import com.example.applemarketplace.service.model.PlaceOrderPurchaseRequest;
+import com.example.applemarketplace.service.model.PlaceOrderRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@Component
+@Service
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
+    private static final Integer UNPAID_ORDER_MAX_VALID_DURATION = 10 * 60;
     private final OrderRepository orderRepository;
     private final GoodRepository goodRepository;
 
@@ -53,5 +58,11 @@ public class OrderServiceImpl implements OrderService {
         order.setStatus(OrderStatus.PAID);
         order.setPayedOn(Instant.now());
         return ServiceLayerMapper.I.map(order);
+    }
+
+    @Override
+    public void deleteUnpaidOrders() {
+        Instant maxValidCreationTime = Instant.now().minus(Duration.ofMinutes(UNPAID_ORDER_MAX_VALID_DURATION));
+        orderRepository.deleteByCreatedOnBeforeAndStatus(maxValidCreationTime, OrderStatus.UNPAID);
     }
 }

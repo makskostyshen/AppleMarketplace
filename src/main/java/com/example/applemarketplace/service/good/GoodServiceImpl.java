@@ -10,12 +10,12 @@ import com.example.applemarketplace.service.model.Good;
 import com.example.applemarketplace.service.model.GoodStock;
 import com.example.applemarketplace.service.model.UpdateGoodStockRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
+@Service
 @RequiredArgsConstructor
 public class GoodServiceImpl implements GoodService {
     private final GoodRepository goodRepository;
