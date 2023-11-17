@@ -1,11 +1,13 @@
 package com.example.applemarketplace.port.rest;
 
+import com.example.applemarketplace.model.*;
 import com.example.applemarketplace.port.rest.dto.*;
-import com.example.applemarketplace.service.model.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
+
+import java.security.Principal;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.ERROR)
 public interface RestPortMapper {
@@ -21,8 +23,13 @@ public interface RestPortMapper {
 
     GoodPurchaseDto map(GoodPurchase goodPurchase);
 
-    @Mapping(target = "clientId", source = "client.id")
+    @Mapping(target = "clientId", source = "clientProfile.id")
     OrderDto map(Order order);
 
     PlaceOrderPurchaseRequest map(PlaceOrderPurchaseRequestDto placeOrderPurchaseRequestDto);
+
+    @Mapping(target = "bill", source = "placeOrderRequestDto.bill")
+    @Mapping(target = "purchases", source = "placeOrderRequestDto.purchases")
+    @Mapping(target = "clientEmail", source = "principal.name")
+    PlaceOrderRequest map(PlaceOrderRequestDto placeOrderRequestDto, Principal principal);
 }

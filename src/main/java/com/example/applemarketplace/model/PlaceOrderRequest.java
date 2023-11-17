@@ -1,4 +1,4 @@
-package com.example.applemarketplace.service.model;
+package com.example.applemarketplace.model;
 
 import lombok.Data;
 
@@ -9,4 +9,5 @@ import java.util.List;
 public class PlaceOrderRequest {
     private List<PlaceOrderPurchaseRequest> purchases;
     private BigDecimal bill;
+    private String clientEmail;
 }

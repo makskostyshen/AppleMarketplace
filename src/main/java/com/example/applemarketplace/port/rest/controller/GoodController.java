@@ -8,6 +8,7 @@ import com.example.applemarketplace.port.rest.dto.UpdateGoodStockRequestDto;
 import com.example.applemarketplace.service.good.GoodService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Collectors;
@@ -19,6 +20,7 @@ public class GoodController {
     private final GoodService goodService;
 
     @PostMapping
+    @PreAuthorize("hasAuthority('MANAGER')")
     public ResponseEntity<GoodDto> createGood(@RequestBody final GoodDto good) {
         return ResponseEntity.ok(
                 RestPortMapper.I.map(
@@ -29,6 +31,7 @@ public class GoodController {
 
 
     @PatchMapping("/stocks")
+    @PreAuthorize("hasAuthority('MANAGER')")
     public ResponseEntity<GoodStockDto> updateGoodStock(
             @RequestBody final UpdateGoodStockRequestDto requestDto) {
         return ResponseEntity.ok(
@@ -39,6 +42,7 @@ public class GoodController {
     }
 
     @GetMapping ("/stocks")
+    @PreAuthorize("hasAnyAuthority('MANAGER', 'CLIENT')")
     public ResponseEntity<GoodStocksDto> getAllGoodStocks() {
         return ResponseEntity.ok(
                 new GoodStocksDto(

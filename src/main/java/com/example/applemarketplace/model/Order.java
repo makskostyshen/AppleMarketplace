@@ -1,4 +1,4 @@
-package com.example.applemarketplace.service.model;
+package com.example.applemarketplace.model;
 
 import lombok.Builder;
 import lombok.Data;
@@ -14,7 +14,7 @@ public class Order {
     private List<GoodPurchase> goodPurchases;
     private OrderStatus status;
     private BigDecimal bill;
-    private ClientProfile client;
+    private ClientProfile clientProfile;
     private Instant createdOn;
     private Instant payedOn;
 }

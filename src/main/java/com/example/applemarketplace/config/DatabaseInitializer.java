@@ -7,6 +7,8 @@ import com.example.applemarketplace.data.good.stock.GoodStockEntity;
 import com.example.applemarketplace.data.good.stock.GoodStockRepository;
 import com.example.applemarketplace.data.order.OrderEntity;
 import com.example.applemarketplace.data.order.OrderRepository;
+import com.example.applemarketplace.data.user.ClientProfileEntity;
+import com.example.applemarketplace.data.user.ClientProfileRepository;
 import com.example.applemarketplace.data.user.UserAccountEntity;
 import com.example.applemarketplace.data.user.UserAccountRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,7 @@ public class DatabaseInitializer implements CommandLineRunner {
     private final OrderRepository orderRepository;
     private final GoodStockRepository goodStockRepository;
     private final UserAccountRepository userAccountRepository;
+    private final ClientProfileRepository clientProfileRepository;
 
     @Override
     public void run(String... args) {
@@ -43,11 +46,15 @@ public class DatabaseInitializer implements CommandLineRunner {
         userAccountEntity.setEmail("maxx");
         userAccountEntity.setPassword("pass");
 
-        OrderEntity order = new OrderEntity(BigDecimal.valueOf(10000), List.of(goodPurchase), Instant.now());
+        ClientProfileEntity clientProfileEntity = new ClientProfileEntity();
+        clientProfileEntity.setAccount(userAccountEntity);
+
+        OrderEntity order = new OrderEntity(BigDecimal.valueOf(10000), List.of(goodPurchase), clientProfileEntity, Instant.now());
 
         goodRepository.save(good);
         goodStockRepository.save(goodStock);
-        orderRepository.save(order);
         userAccountRepository.save(userAccountEntity);
+        clientProfileRepository.save(clientProfileEntity);
+        orderRepository.save(order);
     }
 }

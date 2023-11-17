@@ -2,7 +2,7 @@ package com.example.applemarketplace.data.order;
 
 import com.example.applemarketplace.data.good.purchase.GoodPurchaseEntity;
 import com.example.applemarketplace.data.user.ClientProfileEntity;
-import com.example.applemarketplace.service.model.OrderStatus;
+import com.example.applemarketplace.model.OrderStatus;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -49,14 +49,16 @@ public class OrderEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
     @ToString.Exclude
-    private ClientProfileEntity client;
+    private ClientProfileEntity clientProfile;
 
     public OrderEntity(
             final BigDecimal bill,
             final List<GoodPurchaseEntity> purchases,
-            Instant createdOn) {
+            final ClientProfileEntity clientProfile,
+            final Instant createdOn) {
 
         this.bill = bill;
+        this.clientProfile = clientProfile;
         this.createdOn = createdOn;
         this.goodPurchases = new ArrayList<>();
         this.status = OrderStatus.UNPAID;

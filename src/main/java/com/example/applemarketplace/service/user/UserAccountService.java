@@ -1,6 +1,6 @@
 package com.example.applemarketplace.service.user;
 
-import com.example.applemarketplace.service.model.UserAccount;
+import com.example.applemarketplace.model.UserAccount;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 

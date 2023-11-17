@@ -5,8 +5,9 @@ import com.example.applemarketplace.data.good.purchase.GoodPurchaseEntity;
 import com.example.applemarketplace.data.good.stock.GoodStockEntity;
 import com.example.applemarketplace.data.order.OrderEntity;
 import com.example.applemarketplace.data.user.ClientProfileEntity;
+import com.example.applemarketplace.data.user.ManagerProfileEntity;
 import com.example.applemarketplace.data.user.UserAccountEntity;
-import com.example.applemarketplace.service.model.*;
+import com.example.applemarketplace.model.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
@@ -25,6 +26,8 @@ public interface ServiceLayerMapper {
     GoodPurchase map(GoodPurchaseEntity goodPurchaseEntity);
 
     ClientProfile map(ClientProfileEntity clientProfileEntity);
+
+    ManagerProfile map(ManagerProfileEntity managerProfileEntity);
 
     @Mapping(target = "authorities", ignore = true)
     UserAccount map(UserAccountEntity userAccountEntity);

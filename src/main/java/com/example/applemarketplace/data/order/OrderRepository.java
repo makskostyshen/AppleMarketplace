@@ -1,6 +1,6 @@
 package com.example.applemarketplace.data.order;
 
-import com.example.applemarketplace.service.model.OrderStatus;
+import com.example.applemarketplace.model.OrderStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.Instant;

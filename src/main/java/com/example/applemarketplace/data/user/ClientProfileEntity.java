@@ -17,7 +17,7 @@ public class ClientProfileEntity {
     @Column(name = "id")
     private String id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id")
     @ToString.Exclude
     private UserAccountEntity account;

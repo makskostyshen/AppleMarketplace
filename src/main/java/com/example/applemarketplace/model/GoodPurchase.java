@@ -1,4 +1,4 @@
-package com.example.applemarketplace.service.model;
+package com.example.applemarketplace.model;
 
 import lombok.Data;
 

@@ -1,7 +1,6 @@
 package com.example.applemarketplace.data.user;
 
 import lombok.Data;
-import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -17,8 +16,7 @@ public class ManagerProfileEntity {
     @Column(name = "id")
     private String id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id")
-    @ToString.Exclude
     private UserAccountEntity account;
 }

@@ -1,8 +1,8 @@
 package com.example.applemarketplace.service.good;
 
-import com.example.applemarketplace.service.model.Good;
-import com.example.applemarketplace.service.model.GoodStock;
-import com.example.applemarketplace.service.model.UpdateGoodStockRequest;
+import com.example.applemarketplace.model.Good;
+import com.example.applemarketplace.model.GoodStock;
+import com.example.applemarketplace.model.UpdateGoodStockRequest;
 
 import java.util.List;
 

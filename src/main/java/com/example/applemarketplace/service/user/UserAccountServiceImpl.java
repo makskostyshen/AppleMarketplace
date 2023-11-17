@@ -1,8 +1,9 @@
 package com.example.applemarketplace.service.user;
 
 import com.example.applemarketplace.data.user.UserAccountRepository;
+import com.example.applemarketplace.exception.UserNotFoundException;
 import com.example.applemarketplace.service.ServiceLayerMapper;
-import com.example.applemarketplace.service.model.UserAccount;
+import com.example.applemarketplace.model.UserAccount;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,6 @@ public class UserAccountServiceImpl implements UserAccountService {
     public UserAccount getUserByEmail(String email) {
         return userAccountRepository.findByEmail(email)
                 .map(ServiceLayerMapper.I::map)
-                .get();
+                .orElseThrow(UserNotFoundException::new);
     }
-
 }

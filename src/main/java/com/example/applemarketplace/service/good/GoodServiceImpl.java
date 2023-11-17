@@ -6,9 +6,9 @@ import com.example.applemarketplace.data.good.stock.GoodStockEntity;
 import com.example.applemarketplace.data.good.stock.GoodStockRepository;
 import com.example.applemarketplace.exception.GoodNotFoundException;
 import com.example.applemarketplace.service.ServiceLayerMapper;
-import com.example.applemarketplace.service.model.Good;
-import com.example.applemarketplace.service.model.GoodStock;
-import com.example.applemarketplace.service.model.UpdateGoodStockRequest;
+import com.example.applemarketplace.model.Good;
+import com.example.applemarketplace.model.GoodStock;
+import com.example.applemarketplace.model.UpdateGoodStockRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

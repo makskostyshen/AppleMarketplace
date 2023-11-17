@@ -1,6 +1,6 @@
 package com.example.applemarketplace.port.rest.dto;
 
-import com.example.applemarketplace.service.model.OrderStatus;
+import com.example.applemarketplace.model.OrderStatus;
 import lombok.Data;
 
 import java.math.BigDecimal;

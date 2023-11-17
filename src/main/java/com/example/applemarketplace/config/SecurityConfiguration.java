@@ -28,11 +28,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain getSecurityFilterChain(final HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.csrf().disable()
                 .authorizeHttpRequests(auths ->
-                        auths.requestMatchers(new AntPathRequestMatcher("/index")).permitAll())
-                .authorizeHttpRequests(auths ->
-                        auths.requestMatchers(new AntPathRequestMatcher("/login")).permitAll())
-                .authorizeHttpRequests(auths ->
-                        auths.anyRequest().authenticated())
+                        auths.anyRequest().permitAll())
                 .addFilterBefore(jwtSecurityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }

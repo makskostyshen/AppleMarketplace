@@ -1,6 +1,7 @@
 package com.example.applemarketplace.data.user;
 
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -21,4 +22,12 @@ public class UserAccountEntity {
 
     @Column(name = "password")
     private String password;
+
+    @OneToOne(mappedBy = "account")
+    @ToString.Exclude
+    private ClientProfileEntity clientProfile;
+
+    @OneToOne(mappedBy = "account")
+    @ToString.Exclude
+    private ManagerProfileEntity managerProfile;
 }
