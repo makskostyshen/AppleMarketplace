@@ -7,6 +7,8 @@ import com.example.applemarketplace.data.good.stock.GoodStockEntity;
 import com.example.applemarketplace.data.good.stock.GoodStockRepository;
 import com.example.applemarketplace.data.order.OrderEntity;
 import com.example.applemarketplace.data.order.OrderRepository;
+import com.example.applemarketplace.data.user.UserAccountEntity;
+import com.example.applemarketplace.data.user.UserAccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +23,7 @@ public class DatabaseInitializer implements CommandLineRunner {
     private final GoodRepository goodRepository;
     private final OrderRepository orderRepository;
     private final GoodStockRepository goodStockRepository;
+    private final UserAccountRepository userAccountRepository;
 
     @Override
     public void run(String... args) {
@@ -36,10 +39,15 @@ public class DatabaseInitializer implements CommandLineRunner {
         goodPurchase.setGood(good);
         goodPurchase.setCount(4);
 
+        UserAccountEntity userAccountEntity = new UserAccountEntity();
+        userAccountEntity.setEmail("maxx");
+        userAccountEntity.setPassword("pass");
+
         OrderEntity order = new OrderEntity(BigDecimal.valueOf(10000), List.of(goodPurchase), Instant.now());
 
         goodRepository.save(good);
         goodStockRepository.save(goodStock);
         orderRepository.save(order);
+        userAccountRepository.save(userAccountEntity);
     }
 }

@@ -1,6 +1,5 @@
-package com.example.applemarketplace.config;
+package com.example.applemarketplace.service.order;
 
-import com.example.applemarketplace.service.order.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.javacrumbs.shedlock.spring.annotation.SchedulerLock;

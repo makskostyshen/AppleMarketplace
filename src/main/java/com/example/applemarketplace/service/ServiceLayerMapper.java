@@ -8,6 +8,7 @@ import com.example.applemarketplace.data.user.ClientProfileEntity;
 import com.example.applemarketplace.data.user.UserAccountEntity;
 import com.example.applemarketplace.service.model.*;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
@@ -25,6 +26,7 @@ public interface ServiceLayerMapper {
 
     ClientProfile map(ClientProfileEntity clientProfileEntity);
 
+    @Mapping(target = "authorities", ignore = true)
     UserAccount map(UserAccountEntity userAccountEntity);
 
     Order map(OrderEntity orderEntity);

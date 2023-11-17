@@ -1,0 +1,9 @@
+package com.example.applemarketplace.port.rest.dto;
+
+import lombok.Data;
+
+@Data
+public class LoginRequestDto {
+    private String email;
+    private String password;
+}
