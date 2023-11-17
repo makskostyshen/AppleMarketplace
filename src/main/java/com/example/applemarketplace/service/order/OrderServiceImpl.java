@@ -19,6 +19,7 @@ import com.example.applemarketplace.model.PlaceOrderRequest;
 import com.example.applemarketplace.service.ServiceLayerMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -77,6 +78,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
     public void deleteUnpaidOrders() {
         Instant maxValidCreationTime = Instant.now().minus(Duration.ofMinutes(UNPAID_ORDER_MAX_VALID_DURATION));
         orderRepository.deleteByCreatedOnBeforeAndStatus(maxValidCreationTime, OrderStatus.UNPAID);

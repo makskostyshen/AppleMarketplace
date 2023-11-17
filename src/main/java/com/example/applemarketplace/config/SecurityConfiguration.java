@@ -2,6 +2,7 @@ package com.example.applemarketplace.config;
 
 import com.example.applemarketplace.security.JwtSecurityFilter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,7 +16,6 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -28,8 +28,11 @@ public class SecurityConfiguration {
     public SecurityFilterChain getSecurityFilterChain(final HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.csrf().disable()
                 .authorizeHttpRequests(auths ->
+                        auths.requestMatchers(PathRequest.toH2Console()).permitAll())
+                .authorizeHttpRequests(auths ->
                         auths.anyRequest().permitAll())
                 .addFilterBefore(jwtSecurityFilter, UsernamePasswordAuthenticationFilter.class)
+                .headers().frameOptions().disable().and()
                 .build();
     }
     @Bean
